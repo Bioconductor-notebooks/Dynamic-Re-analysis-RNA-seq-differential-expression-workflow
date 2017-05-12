@@ -1,6 +1,10 @@
 FROM jupyter/minimal-notebook
 
+<<<<<<< HEAD
 MAINTAINER Jiaming Hu <huj22@uw.edu>
+=======
+MAINTAINER Yash Tamta <yasht7@uw.edu>
+>>>>>>> origin/master
 
 USER root
 
@@ -29,6 +33,7 @@ ENV PATH $RHOME_DIR/bin:$PATH
 
 USER $NB_USER
 
+<<<<<<< HEAD
 RUN mkdir -p $RHOME_DIR
 
 #To get R's blas and lapack must compile from source NOT from deb
@@ -49,3 +54,48 @@ RUN Rscript -e "source('https://bioconductor.org/biocLite.R');biocLite(c('BMA','
 RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite(c('airway','BiocStyle','Rsamtools','GenomicAlignments','GenomicFeatures','BiocParallel','DESeq2','vsn','genefilter','AnnotationDbi','org.Hs.eg.db','Gviz','sva'))" | R --vanilla
 RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite(c('airway','BiocStyle','Rsamtools','GenomicAlignments','GenomicFeatures','BiocParallel','DESeq2','vsn','genefilter','AnnotationDbi','org.Hs.eg.db','Gviz','sva','fission'))" | R --vanilla
 WORKDIR /home/$NB_USER/work
+=======
+# R packages
+
+RUN conda config --add channels r
+RUN conda config --add channels bioconda
+
+RUN conda install --quiet --yes \
+    'r-base=3.3.2' \
+    'r-irkernel=0.7*' \
+    'r-plyr=1.8*' \
+    'r-devtools=1.12*' \
+    'r-shiny=0.14*' \
+    'r-rmarkdown=1.2*' \
+    'r-rsqlite=1.1*' \
+    'r-reshape2=1.4*' \
+    'r-nycflights13=0.2*' \
+    'r-caret=6.0*' \
+    'r-rcurl=1.95*' \
+    'r-crayon=1.3*' && conda clean -tipsy
+    
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('limma')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('AnnotationDbi')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('samr')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('hugene20stprobeset.db')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('hgu133plus2.db')" | R --vanilla
+
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('airway')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('BiocStyle')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('Rsamtools')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('GenomicFeatures')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('GenomicAlignments')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('BiocParallel')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('DESeq2')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('vsn')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('Organism.dplyr')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('genefilter')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('AnnotationDbi')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('OrganismDbi')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('Gviz')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('sva')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('fission')" | R --vanilla
+
+WORKDIR /home/jovyan
+ADD . /home/jovyan
+>>>>>>> origin/master
