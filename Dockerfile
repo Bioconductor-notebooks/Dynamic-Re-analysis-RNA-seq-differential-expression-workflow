@@ -1,6 +1,6 @@
 FROM jupyter/r-notebook:599db13f9123
 
-MAINTAINER Reem Almugbel <reem2@uw.edu>
+MAINTAINER Yashaswi Tamta <yasht7@uw.edu>
 
 USER root
 
@@ -17,7 +17,6 @@ RUN apt-get update && \
 
 USER $NB_USER
 
-<<<<<<< HEAD
 # R packages
 
 RUN conda config --add channels r
@@ -43,27 +42,20 @@ RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('samr')" | R --
 RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('hugene20stprobeset.db')" | R --vanilla
 RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('hgu133plus2.db')" | R --vanilla
 
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('airway')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('BiocStyle')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('Rsamtools')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('GenomicAlignments')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('GenomicFeatures')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('BiocParallel')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('DESeq2')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('vsn')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('genefilter')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('AnnotationDbi')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('org.Hs.eg.db')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('Gviz')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('sva')" | R --vanilla
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('fission')" | R --vanilla
+
 WORKDIR /home/jovyan
 ADD . /home/jovyan
-=======
-RUN mkdir -p $RHOME_DIR
-
-#To get R's blas and lapack must compile from source NOT from deb
-RUN cd /tmp && wget https://cran.r-project.org/src/base/R-latest.tar.gz && \
-    tar -xzvf R-latest.tar.gz && \
-    cd /tmp/R-* && ./configure --prefix=$RENV_DIR --with-cairo && \
-    cd /tmp/R-* && make -j 8 && \
-    cd /tmp/R-* && make install rhome=$RHOME_DIR
-
-RUN echo "options(bitmapType='cairo')" > /home/$NB_USER/.Rprofile
-#need to install in xxx for libraries to be in the right place
-
-RUN Rscript -e "install.packages(c('Cairo', 'RCurl', 'repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'), repos='http://cran.r-project.org');devtools::install_github('IRkernel/IRkernel');IRkernel::installspec()"
-
-#install components of bioconductor for networkBMA
-RUN Rscript -e "source('https://bioconductor.org/biocLite.R');biocLite(c('BMA','Rcpp','RcppArmadillo','RcppEigen','BH','leaps'),ask=FALSE)"
-
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite(c('airway','BiocStyle','Rsamtools','GenomicAlignments','GenomicFeatures','BiocParallel','DESeq2','vsn','genefilter','AnnotationDbi','org.Hs.eg.db','Gviz','sva','fission'))" | R --vanilla
-
-WORKDIR /home/$NB_USER/work
->>>>>>> origin/master
