@@ -46,6 +46,6 @@ RUN Rscript -e "install.packages(c('Cairo', 'RCurl', 'repr', 'IRdisplay', 'evalu
 #install components of bioconductor for networkBMA
 RUN Rscript -e "source('https://bioconductor.org/biocLite.R');biocLite(c('BMA','Rcpp','RcppArmadillo','RcppEigen','BH','leaps'),ask=FALSE)"
 
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite(c('airway','BiocStyle','Rsamtools','GenomicAlignments','GenomicFeatures','BiocParallel','DESeq2','vsn','genefilter','AnnotationDbi','org.Hs.eg.db','Gviz','sva'))" | R --vanilla
 RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite(c('airway','BiocStyle','Rsamtools','GenomicAlignments','GenomicFeatures','BiocParallel','DESeq2','vsn','genefilter','AnnotationDbi','org.Hs.eg.db','Gviz','sva','fission'))" | R --vanilla
+
 WORKDIR /home/$NB_USER/work
