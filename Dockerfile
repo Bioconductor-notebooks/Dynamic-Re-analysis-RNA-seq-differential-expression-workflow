@@ -17,6 +17,7 @@ RUN apt-get update && \
 
 USER $NB_USER
 
+<<<<<<< HEAD
 # R packages
 
 RUN conda config --add channels r
@@ -44,3 +45,25 @@ RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('hgu133plus2.db
 
 WORKDIR /home/jovyan
 ADD . /home/jovyan
+=======
+RUN mkdir -p $RHOME_DIR
+
+#To get R's blas and lapack must compile from source NOT from deb
+RUN cd /tmp && wget https://cran.r-project.org/src/base/R-latest.tar.gz && \
+    tar -xzvf R-latest.tar.gz && \
+    cd /tmp/R-* && ./configure --prefix=$RENV_DIR --with-cairo && \
+    cd /tmp/R-* && make -j 8 && \
+    cd /tmp/R-* && make install rhome=$RHOME_DIR
+
+RUN echo "options(bitmapType='cairo')" > /home/$NB_USER/.Rprofile
+#need to install in xxx for libraries to be in the right place
+
+RUN Rscript -e "install.packages(c('Cairo', 'RCurl', 'repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'), repos='http://cran.r-project.org');devtools::install_github('IRkernel/IRkernel');IRkernel::installspec()"
+
+#install components of bioconductor for networkBMA
+RUN Rscript -e "source('https://bioconductor.org/biocLite.R');biocLite(c('BMA','Rcpp','RcppArmadillo','RcppEigen','BH','leaps'),ask=FALSE)"
+
+RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite(c('airway','BiocStyle','Rsamtools','GenomicAlignments','GenomicFeatures','BiocParallel','DESeq2','vsn','genefilter','AnnotationDbi','org.Hs.eg.db','Gviz','sva','fission'))" | R --vanilla
+
+WORKDIR /home/$NB_USER/work
+>>>>>>> origin/master
