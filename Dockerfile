@@ -36,26 +36,26 @@ RUN conda install --quiet --yes \
     'r-rcurl=1.95*' \
     'r-crayon=1.3*' && conda clean -tipsy
     
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('limma')" | R --vanilla
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('AnnotationDbi')" | R --vanilla
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('samr')" | R --vanilla
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('hugene20stprobeset.db')" | R --vanilla
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('hgu133plus2.db')" | R --vanilla
+# RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('limma')" | R --vanilla
+# RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('AnnotationDbi')" | R --vanilla
+# RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('samr')" | R --vanilla
+# RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('hugene20stprobeset.db')" | R --vanilla
+# RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('hgu133plus2.db')" | R --vanilla
 
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('airway')" | R --vanilla
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('BiocStyle')" | R --vanilla
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('Rsamtools')" | R --vanilla
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('GenomicAlignments')" | R --vanilla
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('GenomicFeatures')" | R --vanilla
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('BiocParallel')" | R --vanilla
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('DESeq2')" | R --vanilla
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('vsn')" | R --vanilla
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('genefilter')" | R --vanilla
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('AnnotationDbi')" | R --vanilla
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('org.Hs.eg.db')" | R --vanilla
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('Gviz')" | R --vanilla
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('sva')" | R --vanilla
-RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('fission')" | R --vanilla
+# RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('airway')" | R --vanilla
+# RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('BiocStyle')" | R --vanilla
+# RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('Rsamtools')" | R --vanilla
+# RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('GenomicAlignments')" | R --vanilla
+# RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('GenomicFeatures')" | R --vanilla
+# RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('BiocParallel')" | R --vanilla
+# RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('DESeq2')" | R --vanilla
+# RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('vsn')" | R --vanilla
+# RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('genefilter')" | R --vanilla
+# RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('AnnotationDbi')" | R --vanilla
+# RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('org.Hs.eg.db')" | R --vanilla
+# RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('Gviz')" | R --vanilla
+# RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('sva')" | R --vanilla
+# RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('fission')" | R --vanilla
 
 WORKDIR /home/jovyan
 ADD . /home/jovyan
