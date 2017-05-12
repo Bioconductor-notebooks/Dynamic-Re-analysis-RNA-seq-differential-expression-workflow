@@ -35,6 +35,15 @@ RUN conda install --quiet --yes \
     'r-caret=6.0*' \
     'r-rcurl=1.95*' \
     'r-xml=3.98_1.5' \
+    'r-knitr=1.15.1' \
+    'r-rmarkdown=1.3' \
+    'r-magrittr=1.5' \
+    'r-dpylr=0.5.0' \
+    'r-ggplot2=2.2.0' \
+    'r-pheatmap=1.0.8' \
+    'r-rcolorbrewer=1.1_2' \
+    'r-poiclaclu=1.0.2' \
+    'r-ggbeeswarm=0.5.0' \
     'r-crayon=1.3*' && conda clean -tipsy
     
 # RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('limma')" | R --vanilla
