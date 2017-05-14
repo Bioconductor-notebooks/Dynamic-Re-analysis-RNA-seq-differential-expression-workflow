@@ -35,7 +35,6 @@ RUN conda install --quiet --yes \
     'r-caret=6.0*' \
     'r-rcurl=1.95*' \
     'r-xml=3.98_1.5' \
-    'r-hexbin=1.27.1' \
     'r-knitr=1.15.1' \
     'r-rmarkdown=1.3' \
     'r-magrittr=1.5' \
