@@ -38,7 +38,7 @@ RUN conda install --quiet --yes \
     'r-knitr=1.15.1' \
     'r-rmarkdown=1.3' \
     'r-magrittr=1.5' \
-    'r-dpylr=0.5.0' \
+    'r-dplyr=0.5.0' \
     'r-ggplot2=2.2.0' \
     'r-pheatmap=1.0.8' \
     'r-rcolorbrewer=1.1_2' \
