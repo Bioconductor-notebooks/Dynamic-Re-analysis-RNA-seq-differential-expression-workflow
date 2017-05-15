@@ -53,6 +53,7 @@ RUN Rscript -e "install.packages('pheatmap')"
 RUN Rscript -e "install.packages('RColorBrewer')"
 RUN Rscript -e "install.packages('PoiClaClu')"
 RUN Rscript -e "install.packages('ggbeeswarm')"
+RUN Rscript -e "install.packages('hexbin')"
 
 RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('airway')" | R --vanilla
 RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('BiocStyle')" | R --vanilla
