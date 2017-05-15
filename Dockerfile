@@ -35,13 +35,6 @@ RUN conda install --quiet --yes \
     'r-caret=6.0*' \
     'r-rcurl=1.95*' \
     'r-xml=3.98_1.5' \
-    'r-knitr=1.15.1' \
-    'r-rmarkdown=1.3' \
-    'r-magrittr=1.5' \
-    'r-dplyr=0.5.0' \
-    'r-ggplot2=2.2.0' \
-    'r-pheatmap=1.0.8' \
-    'r-rcolorbrewer=1.1_2' \
     'r-crayon=1.3*' && conda clean -tipsy
     
 # RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('limma')" | R --vanilla
@@ -49,6 +42,17 @@ RUN conda install --quiet --yes \
 # RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('samr')" | R --vanilla
 # RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('hugene20stprobeset.db')" | R --vanilla
 # RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('hgu133plus2.db')" | R --vanilla
+
+RUN echo "r <- getOption('repos'); r['CRAN'] <- 'http://cran.us.r-project.org'; options(repos = r);" > ~/.Rprofile
+RUN Rscript -e "install.packages('knitr')"
+RUN Rscript -e "install.packages('ggplot2')"
+RUN Rscript -e "install.packages('rmarkdown')"
+RUN Rscript -e "install.packages('magrittr')"
+RUN Rscript -e "install.packages('dplyr')"
+RUN Rscript -e "install.packages('pheatmap')"
+RUN Rscript -e "install.packages('RColorBrewer')"
+RUN Rscript -e "install.packages('PoiClaClu')"
+RUN Rscript -e "install.packages('ggbeeswarm')"
 
 RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('airway')" | R --vanilla
 RUN echo "source('http://bioconductor.org/biocLite.R'); biocLite('BiocStyle')" | R --vanilla
